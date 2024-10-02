@@ -140,6 +140,7 @@ const salir = () => {
   align-items: center; /* Centra los elementos horizontalmente */
   justify-content: flex-start; /* Alinea los elementos en la parte superior */
   min-height: 100vh; /* Altura mínima completa del viewport */
+  width: 149%;
   text-align: center; /* Centra el texto */
   padding: 20px; /* Añade padding alrededor del contenido */
   background-color: #f0f4f8; /* Color de fondo claro */
