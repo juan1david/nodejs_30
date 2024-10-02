@@ -1,174 +1,236 @@
 <template>
   <div class="home-container">
-    <!-- Título de bienvenida -->
-    <h1 class="home-title">WELCOME TO PROCESSCHOOL</h1>
+    <header class="header">
+      <h1 class="home-title">¡Bienvenido a Processchool!</h1>
+      <p class="home-description">
+        Descubre nuestras características únicas y explora todas las posibilidades que ofrecemos para tu proceso educativo. ¡Estamos encantados de tenerte aquí! 
+        Con Processchool, el aprendizaje se convierte en una experiencia enriquecedora y colaborativa.
+      </p>
+      <button class="home-button">Comenzar</button>
+    </header>
 
-    <!-- Descripción -->
-    <p class="home-description">
-      Descubre nuestras características únicas y explora todas las posibilidades que ofrecemos para el proceso educativo. ¡Estamos encantados de tenerte aquí!
-    </p>
+    <section class="features">
+      <h2 class="features-title">Nuestras Características</h2>
+      <div class="feature-items">
+        <div class="feature-item">
+          <h3>Clases Interactivas</h3>
+          <p>Clases dinámicas y atractivas con actividades prácticas y multimedia para un aprendizaje efectivo.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Soporte Personalizado</h3>
+          <p>Asesoría experta para resolver dudas y guiar tu proceso de aprendizaje.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Materiales de Estudio</h3>
+          <p>Accede a materiales de estudio actualizados, diseñados para facilitar tu aprendizaje.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Evaluaciones Constantes</h3>
+          <p>Mide tu progreso con evaluaciones regulares y obtén retroalimentación inmediata.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Comunidad Colaborativa</h3>
+          <p>Comparte ideas y experiencias con otros estudiantes en un ambiente de aprendizaje.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Acceso Móvil</h3>
+          <p>Accede a clases y materiales desde cualquier dispositivo, adaptándote a tu estilo de vida.</p>
+        </div>
+      </div>
+    </section>
 
-    <!-- Botón de inicio -->
-    <button class="home-button">Comenzar</button>
-
-    <!-- Sección de características -->
-    <div class="features">
-      <div class="feature-item">
-        <h2>Clases Interactivas</h2>
-        <p>Ofrecemos clases interactivas que hacen el aprendizaje más dinámico y atractivo.</p>
-      </div>
-      <div class="feature-item">
-        <h2>Soporte Personalizado</h2>
-        <p>Recibe soporte personalizado de nuestros expertos para resolver cualquier duda.</p>
-      </div>
-      <div class="feature-item">
-        <h2>Materiales de Estudio</h2>
-        <p>Accede a una amplia gama de materiales de estudio actualizados y relevantes.</p>
-      </div>
-    </div>
+    <section class="about-us">
+      <h2 class="about-title">Sobre Nosotros</h2>
+      <p class="about-description">
+        En Processchool, nuestra misión es transformar la educación a través de la tecnología y la innovación. 
+        Creemos en un aprendizaje accesible y personalizado que se adapte a las necesidades de cada estudiante. 
+        Nuestro equipo está comprometido a ofrecer una experiencia de aprendizaje excepcional.
+      </p>
+      <p class="about-description">
+        Únete a nosotros y forma parte de una nueva era educativa donde tu éxito es nuestra prioridad.
+      </p>
+    </section>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-
-// Elimina el código relacionado con el carrusel de imágenes
+// No es necesario ningún script adicional por ahora
 </script>
 
 <style scoped>
 /* Estilo para el contenedor principal */
 .home-container {
-  display: flex; /* Usa Flexbox para centrar el contenido */
-  flex-direction: column; /* Organiza los elementos verticalmente */
-  align-items: center; /* Centra los elementos horizontalmente */
-  justify-content: center; /* Centra los elementos verticalmente */
-  height: 160vh; /* Altura completa del viewport */
-  text-align: center; /* Centra el texto */
-  padding: 20px; /* Añade padding alrededor del contenido */
-  background-color: rgba(244, 244, 244, 0.8); /* Color de fondo claro con opacidad */
-  background-image: url('./icons/images.jpeg'); /* Imagen de fondo */
-  background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
-  background-position: center; /* Centra la imagen de fondo */
-  font-family: 'Arial', sans-serif; /* Fuente moderna y profesional */
-  color: #000000; /* Color del texto blanco para contraste con la imagen de fondo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  text-align: center;
+  padding: 40px 20px;
+  background-color: rgba(244, 244, 244, 0.8);
+  background-image: url('./icons/images.jpeg');
+  background-size: cover;
+  background-position: center;
+  font-family: 'Arial', sans-serif;
+  color: #000;
+}
+
+/* Estilo para el encabezado */
+.header {
+  margin-bottom: 40px;
 }
 
 /* Estilo para el título */
 .home-title {
-  font-size: 2.5rem; /* Tamaño de fuente grande para el título */
-  color: #070707; /* Color blanco para el título */
-  margin-bottom: 15px; /* Espacio debajo del título */
-  font-weight: bold; /* Fuente en negrita */
+  font-size: 2.5rem;
+  color: #070707;
+  margin-bottom: 15px;
+  font-weight: bold;
 }
 
 /* Estilo para la descripción */
 .home-description {
-  font-size: 1rem; /* Tamaño de fuente más pequeño para la descripción en pantallas pequeñas */
-  color: #0a0a0a; /* Color blanco para la descripción */
-  margin-bottom: 25px; /* Espacio debajo de la descripción */
-  max-width: 90%; /* Ancho máximo de la descripción con padding para pantallas pequeñas */
-  line-height: 1.6; /* Espaciado de línea para mejor legibilidad */
+  font-size: 1rem;
+  color: #0a0a0a;
+  margin-bottom: 25px;
+  max-width: 80%;
+  line-height: 1.6;
 }
 
 /* Estilo para el botón */
 .home-button {
-  background-color: #007bff; /* Color de fondo azul */
-  color: #000000; /* Color del texto blanco */
-  border: none; /* Sin borde */
-  border-radius: 5px; /* Bordes redondeados */
-  padding: 12px 25px; /* Padding dentro del botón */
-  font-size: 1rem; /* Tamaño de fuente para el texto del botón */
-  cursor: pointer; /* Cursor tipo puntero al pasar sobre el botón */
-  transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves del color de fondo y escalado */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .home-button:hover {
-  background-color: #0056b3; /* Azul más oscuro al pasar el cursor */
-  transform: scale(1.05); /* Aumenta ligeramente el tamaño del botón */
+  background-color: #0056b3;
+  transform: scale(1.05);
 }
 
 /* Estilo para la sección de características */
 .features {
-  display: flex; /* Usa Flexbox para el diseño de las características */
-  flex-wrap: wrap; /* Envuelve los elementos si es necesario */
-  justify-content: center; /* Centra los elementos horizontalmente */
-  margin-top: 40px; /* Espacio arriba de la sección de características */
+  margin-top: 40px;
+  width: 100%;
+}
+
+.features-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+.feature-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .feature-item {
-  background-color: #414141; /* Color de fondo blanco para los elementos de características */
-  border: 1px solid #181515; /* Borde gris claro */
-  border-radius: 8px; /* Bordes redondeados */
-  padding: 20px; /* Padding dentro de cada elemento */
-  margin: 10px; /* Espacio alrededor de cada elemento */
-  width: 280px; /* Ancho fijo para cada elemento */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para los elementos de características */
-  transition: transform 0.3s; /* Transición suave para el escalado */
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  width: calc(33% - 20px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
 }
 
 .feature-item:hover {
-  transform: translateY(-5px); /* Eleva ligeramente el elemento al pasar el cursor */
+  transform: translateY(-5px);
 }
 
-.feature-item h2 {
-  font-size: 1.4rem; /* Tamaño de fuente para los encabezados de características */
-  color: #007bff; /* Color de texto azul para los encabezados */
-  margin-bottom: 10px; /* Espacio debajo del encabezado */
-  font-weight: bold; /* Fuente en negrita */
+.feature-item h3 {
+  font-size: 1.4rem;
+  color: #007bff;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .feature-item p {
-  font-size: 0.9rem; /* Tamaño de fuente para el texto de características */
-  color: #000000; /* Color gris oscuro para el texto */
-  line-height: 1.5; /* Espaciado de línea para mejor legibilidad */
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Estilo para la sección Sobre Nosotros */
+.about-us {
+  margin-top: 40px;
+  max-width: 800px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+.about-description {
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 15px;
 }
 
 /* Estilos adaptativos para pantallas pequeñas */
 @media (max-width: 768px) {
   .home-title {
-    font-size: 2rem; /* Tamaño de fuente del título en pantallas medianas */
+    font-size: 2rem;
   }
 
   .home-description {
-    font-size: 0.9rem; /* Tamaño de fuente para la descripción en pantallas medianas */
-    max-width: 95%; /* Ancho máximo de la descripción */
+    font-size: 0.9rem;
+    max-width: 95%;
   }
 
   .home-button {
-    font-size: 0.9rem; /* Tamaño de fuente del botón en pantallas medianas */
-    padding: 10px 20px; /* Ajusta el padding del botón */
+    font-size: 0.9rem;
+    padding: 10px 20px;
   }
 
   .features {
-    flex-direction: column; /* Organiza los elementos verticalmente en pantallas pequeñas */
+    flex-direction: column;
+    align-items: center;
   }
 
   .feature-item {
-    width: 90%; /* Ancho más flexible para cada elemento */
-    margin: 10px 0; /* Espacio alrededor de cada elemento en pantallas pequeñas */
+    width: 90%;
+    margin: 10px 0;
   }
 }
 
 @media (max-width: 480px) {
   .home-title {
-    font-size: 1.5rem; /* Tamaño de fuente del título en pantallas pequeñas */
+    font-size: 1.5rem;
   }
 
   .home-description {
-    font-size: 0.8rem; /* Tamaño de fuente para la descripción en pantallas pequeñas */
+    font-size: 0.8rem;
   }
 
   .home-button {
-    font-size: 0.8rem; /* Tamaño de fuente del botón en pantallas pequeñas */
-    padding: 8px 15px; /* Ajusta el padding del botón */
+    font-size: 0.8rem;
+    padding: 8px 15px;
   }
 
-  .feature-item h2 {
-    font-size: 1.2rem; /* Tamaño de fuente para los encabezados de características en pantallas pequeñas */
+  .feature-item h3 {
+    font-size: 1.2rem;
   }
 
   .feature-item p {
-    font-size: 0.8rem; /* Tamaño de fuente para el texto de características en pantallas pequeñas */
+    font-size: 0.8rem;
   }
 }
 </style>
