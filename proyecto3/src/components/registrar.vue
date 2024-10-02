@@ -72,6 +72,7 @@ export default {
 .container {
   max-width: 600px;
   margin: 0 auto;
+  width: 149%;
   padding: 20px;
   font-family: Arial, sans-serif;
   background-color: #fff;
