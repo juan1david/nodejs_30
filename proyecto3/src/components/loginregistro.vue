@@ -68,7 +68,13 @@ const loginUsuario = async () => {
                 nombre_usuario: nombreUsuario.value,
                 password: password.value,
             });
-            const { rol: userRol } = response.data;
+            const { rol: userRol, mensaje } = response.data;
+
+            Swal.fire({
+                icon: 'success',
+                title: mensaje,
+                text: 'Bienvenido a tu cuenta',
+            });
 
             if (userRol === "cliente") {
                 router.push('/cliente');
@@ -77,19 +83,13 @@ const loginUsuario = async () => {
             } else {
                 menError.value = 'Rol no encontrado';
             }
-
-            Swal.fire({
-                icon: 'success',
-                title: 'Inicio de sesión exitoso',
-                text: 'Bienvenido a tu cuenta',
-            });
         } catch (error) {
             console.error("Error de inicio de sesión", error);
-            menError.value = "Error de inicio de sesión";
+            menError.value = error.response.data.detail || "Error de inicio de sesión";
             Swal.fire({
                 icon: 'error',
                 title: 'Error de inicio de sesión',
-                text: 'Error al iniciar sesión',
+                text: menError.value,
             });
         }
     } else {
@@ -102,16 +102,17 @@ const loginUsuario = async () => {
             });
             Swal.fire({
                 icon: 'success',
-                title: 'Usuario Registrado',
+                title: response.data.mensaje,
                 text: 'Usuario registrado con éxito',
             });
+            cambioForm(); // Switch to login form after registration
         } catch (error) {
             console.error("Error al registrar usuario: ", error);
-            menError.value = "Error al registrar usuario";
+            menError.value = error.response.data.detail || "Error al registrar usuario";
             Swal.fire({
                 icon: 'error',
                 title: 'Error en el registro',
-                text: 'Hubo un problema al registrar el usuario',
+                text: menError.value,
             });
         }
     }
@@ -131,91 +132,54 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-/* Contenedor principal del formulario de autenticación y registro */
 .aut-container {
-  max-width: 600px; /* Ancho máximo del contenedor en pantallas grandes */
-  margin: 0 auto; /* Centra el contenedor horizontalmente */
-  padding: 20px; /* Espaciado interno */
-  font-family: Arial, sans-serif; /* Fuente de texto */
-  background-color: #fff; /* Color de fondo */
-  border-radius: 8px; /* Bordes redondeados */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra del contenedor */
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo para los inputs del formulario */
 .frminput {
-  margin-bottom: 15px; /* Espacio entre los inputs */
+  margin-bottom: 15px;
 }
 
-/* Estilo para las etiquetas de los inputs */
 .frminput label {
-  display: block; /* Muestra las etiquetas en bloque */
-  margin-bottom: 5px; /* Espacio debajo de la etiqueta */
-  font-weight: bold; /* Fuente en negrita */
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
-/* Estilo para los campos de entrada del formulario */
 .frminput input,
 .frminput select {
-  width: 100%; /* Ancho completo del contenedor */
-  padding: 10px; /* Espaciado interno */
-  border: 1px solid #ddd; /* Borde de la caja */
-  border-radius: 4px; /* Bordes redondeados */
-  box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
-/* Estilo para el botón del formulario */
 button {
-  background-color: #007bff; /* Color de fondo del botón */
-  color: #fff; /* Color del texto */
-  border: none; /* Sin borde */
-  padding: 10px 15px; /* Espaciado interno */
-  border-radius: 4px; /* Bordes redondeados */
-  cursor: pointer; /* Cursor en forma de mano */
-  font-size: 16px; /* Tamaño del texto */
-  transition: background-color 0.3s; /* Transición suave para el cambio de color */
-  margin: 10px 0; /* Margen alrededor del botón */
-  width: 100%; /* Ancho completo del contenedor */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin: 10px 0;
+  width: 100%;
 }
 
-/* Estilo para el botón en estado hover */
 button:hover {
-  background-color: #0056b3; /* Color de fondo en hover */
+  background-color: #0056b3;
 }
 
-/* Estilo para el mensaje de error */
 .error-message {
-  color: #dc3545; /* Color de texto de error */
-  margin-top: 10px; /* Espacio encima del mensaje */
-}
-
-/* Estilo para el mensaje de éxito */
-.message-success {
-  color: #28a745; /* Color de texto de éxito */
-  margin-top: 10px; /* Espacio encima del mensaje */
-}
-
-/* Estilo para el mensaje de advertencia */
-.message-warning {
-  color: #ffc107; /* Color de texto de advertencia */
-  margin-top: 10px; /* Espacio encima del mensaje */
-}
-
-/* Estilo para el mensaje de error general */
-.message-error {
-  color: #dc3545; /* Color de texto de error */
-  margin-top: 10px; /* Espacio encima del mensaje */
-}
-
-/* Media queries para pantallas pequeñas */
-@media (max-width: 600px) {
-  .aut-container {
-    padding: 15px; /* Reducir espaciado interno en pantallas pequeñas */
-  }
-
-  button {
-    padding: 10px; /* Ajustar espaciado interno del botón */
-    font-size: 14px; /* Tamaño del texto en el botón */
-  }
+  color: #dc3545;
+  margin-top: 10px;
 }
 </style>
