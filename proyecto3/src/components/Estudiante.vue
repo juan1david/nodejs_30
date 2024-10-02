@@ -84,6 +84,7 @@ const subjects = ref([
   justify-content: flex-start;
   min-height: 100vh;
   text-align: center;
+  width: 149%;
   padding: 20px;
   background-color: #f0f4f8;
   font-family: 'Arial', sans-serif;
