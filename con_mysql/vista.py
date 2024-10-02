@@ -12,7 +12,7 @@ app=FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5174"],
+    allow_origins=["http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]
@@ -56,33 +56,34 @@ async def getdocumentosclientes(db:Session=Depends(get_db)):
     return[doc[0]for doc in documentos]
 
 @app.post("/registrousuario")
-async def registrar_usuario(user:usu,db:Session=Depends(get_db)):
-    nombre_user=db.query(RegistroUsuario).filter(RegistroUsuario.
-    nombre_usuario==user.nombre_usuario).first()
-    if nombre_user: 
+async def registrar_usuario(user: usu, db: Session = Depends(get_db)):
+    existing_user = db.query(RegistroUsuario).filter(RegistroUsuario.nombre_usuario == user.nombre_usuario).first()
+    if existing_user:
         raise HTTPException(status_code=400, detail="El nombre de usuario ya existe")
     
-    encriptacion=bcrypt.hashpw(user.password.encode('utf-8'),bcrypt.gensalt()) 
-
-    nuevo_user=RegistroUsuario(documento=user.documento, nombre_usuario=user.nombre_usuario,
-    password=encriptacion.decode('utf-8'),rol=user.rol)
+    hashed_password = bcrypt.hashpw(user.password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+    
+    nuevo_user = RegistroUsuario(
+        documento=user.documento,
+        nombre_usuario=user.nombre_usuario,
+        password=hashed_password,
+        rol=user.rol
+    )
     db.add(nuevo_user)
     db.commit()
     db.refresh(nuevo_user)
-    return{"documento": nuevo_user.documento, "nombre":nuevo_user.nombre_usuario, "rol": nuevo_user.rol}
+    return {"mensaje": "Usuario registrado con éxito", "documento": nuevo_user.documento, "nombre": nuevo_user.nombre_usuario, "rol": nuevo_user.rol}
 
 @app.post("/login")
-async def login(user:Login,db:Session=Depends(get_db)):
-    db_user=db.query(RegistroUsuario).filter(RegistroUsuario.nombre_usuario==user.nombre_usuario).first()
+async def login(user: Login, db: Session = Depends(get_db)):
+    db_user = db.query(RegistroUsuario).filter(RegistroUsuario.nombre_usuario == user.nombre_usuario).first()
     if db_user is None:
         raise HTTPException(status_code=400, detail="Usuario no existe")
-    if not bcrypt.checkpw(user.password.encode('utf-8'),db_user.password.encode('utf-8')):
-        raise HTTPException(status_code=400, detail="contraseña incorrecta")
+    if not bcrypt.checkpw(user.password.encode('utf-8'), db_user.password.encode('utf-8')):
+        raise HTTPException(status_code=400, detail="Contraseña incorrecta")
     
-    return{
-        "mensaje":"Inicio de sesion ok",
-        "nombreUsuario":db_user.nombre_usuario,
-        "rol":db_user.rol
+    return {
+        "mensaje": "Inicio de sesión exitoso",
+        "nombreUsuario": db_user.nombre_usuario,
+        "rol": db_user.rol
     }
-
-
