@@ -60,15 +60,20 @@ export default {
 <style scoped>
 /* Estilo general del contenedor de consulta */
 .consulta-container {
+  display: flex; /* Usar Flexbox */
+  flex-direction: column; /* Organiza los elementos verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  height: 100vh; /* Altura completa del viewport */
   max-width: 100%; /* Ajusta el ancho máximo */
   margin: 0 auto; /* Centra el contenedor horizontalmente */
   padding: 20px; /* Ajusta el padding */
   font-family: Arial, sans-serif; /* Fuente de texto */
+  text-align: center; /* Centra el texto del contenedor */
 }
 
 /* Estilo para el encabezado */
 h1 {
-  text-align: center; /* Centra el texto del encabezado */
   color: #333; /* Color del texto */
   margin-bottom: 20px; /* Espacio debajo del encabezado */
 }
@@ -82,6 +87,7 @@ h1 {
 table {
   width: 100%; /* Ancho completo del contenedor */
   border-collapse: collapse; /* Colapsa bordes de las celdas */
+  margin: 0 auto; /* Centra la tabla */
 }
 
 /* Estilo para los encabezados de la tabla */
@@ -100,7 +106,6 @@ td {
 
 /* Estilo para el mensaje de sin datos */
 .no-data {
-  text-align: center; /* Centra el texto */
   color: #999; /* Color del texto */
   font-size: 18px; /* Tamaño del texto */
 }
